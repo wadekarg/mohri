@@ -227,10 +227,10 @@
     </a>
     <a href="../" style="font-size:13px;color:var(--accent);font-weight:600;text-decoration:none">← Back to Home</a>
 
-    <div style="display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--sep);border-radius:20px;padding:4px 8px">
-        <button onclick="setTheme('warm')"  title="Warm"  style="width:18px;height:18px;border-radius:50%;background:#7C5C42;border:2px solid transparent;cursor:pointer;padding:0;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" id="btn-warm"></button>
-        <button onclick="setTheme('slate')" title="Slate" style="width:18px;height:18px;border-radius:50%;background:#4A7C59;border:2px solid transparent;cursor:pointer;padding:0;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" id="btn-slate"></button>
-        <button onclick="setTheme('noir')"  title="Noir"  style="width:18px;height:18px;border-radius:50%;background:#C9A842;border:2px solid transparent;cursor:pointer;padding:0;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" id="btn-noir"></button>
+        <div style="display:flex;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--sep);border-radius:20px;padding:3px 6px">
+        <button onclick="setTheme('warm')"  id="btn-warm"  title="Warm"  style="font-size:16px;background:none;border:2px solid transparent;border-radius:8px;cursor:pointer;padding:2px 4px;transition:all 0.15s;line-height:1">🌻</button>
+        <button onclick="setTheme('slate')" id="btn-slate" title="Slate" style="font-size:16px;background:none;border:2px solid transparent;border-radius:8px;cursor:pointer;padding:2px 4px;transition:all 0.15s;line-height:1">🌲</button>
+        <button onclick="setTheme('noir')"  id="btn-noir"  title="Noir"  style="font-size:16px;background:none;border:2px solid transparent;border-radius:8px;cursor:pointer;padding:2px 4px;transition:all 0.15s;line-height:1">🌕</button>
     </div>
 </nav>
 
@@ -364,13 +364,15 @@
 </div>
 
 <script>
-    const THEMES = { warm: '#7C5C42', slate: '#4A7C59', noir: '#C9A842' };
     function setTheme(t) {
         document.documentElement.setAttribute('data-theme', t);
         localStorage.setItem('mohri-theme', t);
-        Object.keys(THEMES).forEach(k => {
+        ['warm','slate','noir'].forEach(k => {
             const btn = document.getElementById('btn-' + k);
-            if (btn) btn.style.border = k === t ? '2px solid white' : '2px solid transparent';
+            if (btn) {
+                btn.style.background = k === t ? 'var(--sep)' : 'none';
+                btn.style.transform  = k === t ? 'scale(1.15)' : 'scale(1)';
+            }
         });
     }
     (function() {
