@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohri — Privacy Policy</title>
+    <style>
+        :root {
+            --bg:         #FAF7F2;
+            --panel:      #F2EDE5;
+            --accent:     #7C5C42;
+            --accent-tint:#f2ede560;
+            --text:       #1C1410;
+            --sec:        #7A6E65;
+            --sep:        #EDE8E0;
+            --shadow:     rgba(124,92,66,0.10);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg:         #1A1814;
+                --panel:      #201D18;
+                --accent:     #C9A842;
+                --accent-tint:rgba(201,168,66,0.10);
+                --text:       #F0EAE0;
+                --sec:        #A89880;
+                --sep:        #2E2A24;
+                --shadow:     rgba(0,0,0,0.35);
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 0 20px 60px;
+        }
+
+        /* ── Header ── */
+        .header {
+            text-align: center;
+            padding: 52px 20px 40px;
+            border-bottom: 1px solid var(--sep);
+            margin-bottom: 48px;
+        }
+
+        .app-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 22%;
+            box-shadow: 0 8px 28px var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .app-name {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .last-updated {
+            font-size: 13px;
+            color: var(--sec);
+        }
+
+        /* ── Layout ── */
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* ── Sections ── */
+        .section {
+            background: var(--panel);
+            border: 1px solid var(--sep);
+            border-radius: 14px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h2 .icon {
+            font-size: 16px;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        p:last-child { margin-bottom: 0; }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            font-size: 15px;
+            color: var(--text);
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            border-bottom: 1px solid var(--sep);
+        }
+
+        ul li:last-child { border-bottom: none; }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.7;
+        }
+
+        strong { color: var(--text); font-weight: 600; }
+
+        /* ── Privacy badge ── */
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-tint);
+            border: 1px solid var(--sep);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            margin-bottom: 32px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* ── Contact card ── */
+        .contact-card {
+            background: var(--accent-tint);
+            border: 1px solid var(--sep);
+            border-radius: 14px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover { text-decoration: underline; }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 13px;
+            color: var(--sec);
+        }
+
+        footer .mohri {
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="app-icon.png" alt="Mohri App Icon" class="app-icon">
+    <div class="app-name">Mohri</div>
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: May 19, 2026</p>
+</div>
+
+<div class="content">
+
+    <div style="text-align:center;margin-bottom:36px">
+        <div class="privacy-badge">
+            <div class="badge-dot"></div>
+            No data collected. No tracking. No accounts.
+        </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="section">
+        <h2><span class="icon">📋</span> Overview</h2>
+        <p>Mohri is a native task management app for macOS that is built with your privacy as a core principle. We do not collect, store, or transmit any personal information. Your tasks are yours — always.</p>
+        <p>This policy explains what data Mohri uses, where it lives, and what we do and do not do with it.</p>
+    </div>
+
+    <!-- Data Storage -->
+    <div class="section">
+        <h2><span class="icon">💾</span> Data Storage</h2>
+        <p>All your task data — including tasks, descriptions, comments, attachments, history, and settings — is stored exclusively in two places:</p>
+        <ul>
+            <li><strong>Locally on your Mac</strong> — in your Application Support folder, managed entirely by your device</li>
+            <li><strong>Your personal iCloud</strong> — if iCloud sync is enabled, data syncs to your private iCloud account using Apple's CloudKit framework</li>
+        </ul>
+        <p>No data is ever sent to Mohri's servers — because we don't have any.</p>
+    </div>
+
+    <!-- Information We Collect -->
+    <div class="section">
+        <h2><span class="icon">🔍</span> Information We Collect</h2>
+        <p>We collect <strong>nothing</strong>. Mohri does not require an account, does not ask for your name or email address, and does not gather any information about you or how you use the app.</p>
+        <p>The only data that exists is the task data you create yourself, which stays entirely under your control.</p>
+    </div>
+
+    <!-- iCloud Sync -->
+    <div class="section">
+        <h2><span class="icon">☁️</span> iCloud Sync</h2>
+        <p>If you choose to enable iCloud sync, your tasks are synced across your Apple devices using Apple's CloudKit framework. This means:</p>
+        <ul>
+            <li>Data is stored in your private iCloud account — not accessible to anyone else</li>
+            <li>Transmission is encrypted using Apple's secure infrastructure</li>
+            <li>Mohri never sees, touches, or has access to your iCloud data</li>
+            <li>You can disable iCloud sync at any time from the app's Settings</li>
+            <li>Apple's <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color:var(--accent)">privacy policy</a> governs how Apple handles iCloud data</li>
+        </ul>
+    </div>
+
+    <!-- Data We Do NOT Collect -->
+    <div class="section">
+        <h2><span class="icon">🚫</span> Data We Do NOT Collect</h2>
+        <ul>
+            <li>No analytics or usage data</li>
+            <li>No crash reports or diagnostics sent to us</li>
+            <li>No behavioral or activity tracking</li>
+            <li>No advertising identifiers or tracking technologies</li>
+            <li>No access to your contacts, location, camera, or microphone</li>
+            <li>No account registration or email address</li>
+            <li>No data sold or shared with third parties — ever</li>
+        </ul>
+    </div>
+
+    <!-- File Attachments -->
+    <div class="section">
+        <h2><span class="icon">📎</span> File Attachments</h2>
+        <p>Files and images attached to tasks are stored locally on your device as part of the task's data file. If iCloud sync is enabled, attachments are included in the encrypted sync to your private iCloud account.</p>
+        <p>No attachments are ever uploaded to any server outside of your own iCloud.</p>
+    </div>
+
+    <!-- Data Security -->
+    <div class="section">
+        <h2><span class="icon">🔒</span> Data Security</h2>
+        <ul>
+            <li>Local data is protected by macOS security and app sandboxing</li>
+            <li>iCloud data transmission uses Apple's end-to-end encryption</li>
+            <li>Mohri follows Apple's App Sandbox security guidelines</li>
+            <li>No external network connections are made by the app (except to iCloud if enabled)</li>
+        </ul>
+    </div>
+
+    <!-- Your Rights -->
+    <div class="section">
+        <h2><span class="icon">✅</span> Your Rights</h2>
+        <p>You have complete ownership and control over all your data at all times:</p>
+        <ul>
+            <li>Delete any task, comment, or attachment directly within the app</li>
+            <li>Disable iCloud sync to keep everything local only</li>
+            <li>Delete the app to remove all local data from your device</li>
+            <li>Remove iCloud data by deleting it from iCloud Drive in System Settings</li>
+        </ul>
+    </div>
+
+    <!-- Data Retention -->
+    <div class="section">
+        <h2><span class="icon">🗂</span> Data Retention</h2>
+        <p>Task data is retained on your device and iCloud for as long as you choose to keep it. When you delete a task or uninstall the app, that data is removed. Mohri holds no copies of your data anywhere.</p>
+    </div>
+
+    <!-- Changes -->
+    <div class="section">
+        <h2><span class="icon">📝</span> Changes to This Policy</h2>
+        <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated "Last updated" date. Continued use of Mohri after changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <!-- Children -->
+    <div class="section">
+        <h2><span class="icon">👶</span> Children's Privacy</h2>
+        <p>Mohri is not directed to children under the age of 13. Since we collect no personal data whatsoever, there is no risk of inadvertent collection of children's information.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+        <h2><span class="icon">✉️</span> Contact Us</h2>
+        <p>If you have any questions about this privacy policy or how Mohri handles your data, please reach out:</p>
+        <p><strong>Email:</strong> <a href="mailto:wadekargajanan@gmail.com">wadekargajanan@gmail.com</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <span class="mohri">Mohri</span>. All rights reserved.</p>
+    </footer>
+
+</div>
+</body>
+</html>

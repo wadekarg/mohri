@@ -3,168 +3,665 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohri - Privacy Policy</title>
+    <title>Mohri — Task Manager for Mac</title>
+    <meta name="description" content="A beautiful, native task manager built exclusively for macOS. Three stunning themes, rich descriptions, iCloud sync, and a smart dashboard.">
     <style>
+        :root {
+            --bg:       #FAF7F2;
+            --panel:    #F2EDE5;
+            --accent:   #7C5C42;
+            --accent2:  #C97B3A;
+            --text:     #1C1410;
+            --sec:      #7A6E65;
+            --sep:      #EDE8E0;
+            --shadow:   rgba(124,92,66,0.12);
+            --card-bg:  #FFFFFF;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg:       #1A1814;
+                --panel:    #201D18;
+                --accent:   #C9A842;
+                --accent2:  #C97B3A;
+                --text:     #F0EAE0;
+                --sec:      #A89880;
+                --sep:      #2E2A24;
+                --shadow:   rgba(0,0,0,0.4);
+                --card-bg:  #201D18;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
         }
-        .header {
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg);
+            border-bottom: 1px solid var(--sep);
+            padding: 0 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 58px;
+            backdrop-filter: blur(12px);
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 17px; font-weight: 700; color: var(--text);
+            letter-spacing: -0.3px;
+        }
+        .nav-logo img { width: 30px; height: 30px; border-radius: 7px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { font-size: 14px; color: var(--sec); font-weight: 500; }
+        .nav-links a:hover { color: var(--text); text-decoration: none; }
+        .btn-download {
+            background: var(--accent); color: white !important;
+            padding: 8px 20px; border-radius: 20px;
+            font-size: 13px; font-weight: 600;
+            transition: opacity 0.15s;
+        }
+        .btn-download:hover { opacity: 0.85; text-decoration: none !important; }
+
+        /* ── HERO ── */
+        .hero {
             text-align: center;
-            margin-bottom: 30px;
+            padding: 90px 40px 80px;
+            max-width: 860px;
+            margin: 0 auto;
         }
-        .app-icon {
-            width: 128px;
-            height: 128px;
-            margin: 20px auto;
-            display: block;
-            border-radius: 22%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: var(--panel); border: 1px solid var(--sep);
+            border-radius: 20px; padding: 6px 16px;
+            font-size: 12px; font-weight: 600; color: var(--accent);
+            letter-spacing: 0.05em; text-transform: uppercase;
+            margin-bottom: 28px;
         }
-        h1 {
-            color: #007AFF;
-            border-bottom: 2px solid #007AFF;
-            padding-bottom: 10px;
-            margin-top: 10px;
+        .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            font-weight: 700; letter-spacing: -2px;
+            line-height: 1.05; margin-bottom: 22px;
+            color: var(--text);
         }
-        h2 {
-            color: #555;
-            margin-top: 30px;
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 19px; color: var(--sec);
+            max-width: 540px; margin: 0 auto 36px;
+            line-height: 1.6;
         }
-        .last-updated {
-            color: #666;
-            font-style: italic;
+        .hero-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent); color: white;
+            padding: 13px 28px; border-radius: 12px;
+            font-size: 15px; font-weight: 600;
+            box-shadow: 0 4px 16px var(--shadow);
+            transition: transform 0.15s, opacity 0.15s;
         }
-        .contact {
-            background-color: #f5f5f5;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 30px;
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); text-decoration: none; }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--panel); color: var(--text);
+            border: 1px solid var(--sep);
+            padding: 13px 28px; border-radius: 12px;
+            font-size: 15px; font-weight: 500;
+            transition: transform 0.15s;
         }
+        .btn-secondary:hover { transform: translateY(-1px); text-decoration: none; }
+        .hero-note { font-size: 12px; color: var(--sec); margin-top: 14px; }
+
+        /* ── APP PREVIEW ── */
+        .preview-wrap {
+            max-width: 900px; margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+        .app-window {
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 40px 100px var(--shadow), 0 0 0 1px var(--sep);
+            background: var(--panel);
+        }
+        .window-chrome {
+            background: var(--panel);
+            border-bottom: 1px solid var(--sep);
+            padding: 12px 16px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .traffic { display: flex; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-r { background: #FF5F57; }
+        .dot-y { background: #FFBD2E; }
+        .dot-g { background: #28C840; }
+        .window-title { flex: 1; text-align: center; font-size: 12px; font-weight: 600; color: var(--sec); }
+        .window-body { display: flex; height: 460px; }
+
+        /* Sidebar */
+        .w-sidebar {
+            width: 160px; background: var(--panel);
+            border-right: 1px solid var(--sep);
+            padding: 12px 8px; flex-shrink: 0;
+        }
+        .w-section-label {
+            font-size: 9px; font-weight: 700; color: var(--sec);
+            letter-spacing: .08em; text-transform: uppercase;
+            padding: 4px 6px 8px;
+        }
+        .w-stat {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 5px 8px; border-radius: 6px; margin-bottom: 1px;
+            cursor: pointer;
+        }
+        .w-stat.active { background: var(--sep); }
+        .w-stat-label { font-size: 11px; color: var(--sec); }
+        .w-stat-num { font-size: 11px; font-weight: 700; }
+        .w-divider { height: 1px; background: var(--sep); margin: 8px 4px; }
+        .w-filter-dots { display: flex; gap: 5px; padding: 4px 6px; flex-wrap: wrap; }
+        .w-fdot {
+            width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; font-weight: 700; color: white;
+        }
+
+        /* Middle */
+        .w-middle {
+            width: 220px; background: var(--bg);
+            border-right: 1px solid var(--sep);
+            display: flex; flex-direction: column; flex-shrink: 0;
+        }
+        .w-toolbar {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--sep);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .w-toolbar-title { font-size: 12px; font-weight: 600; color: var(--text); }
+        .w-new-btn {
+            background: var(--accent); color: white;
+            font-size: 9px; font-weight: 700;
+            padding: 2px 8px; border-radius: 4px;
+        }
+        .w-search {
+            margin: 6px 8px;
+            background: var(--panel); border: 1px solid var(--sep);
+            border-radius: 6px; padding: 5px 8px;
+            font-size: 10px; color: var(--sec);
+        }
+        .w-tasks { flex: 1; padding: 4px 6px; overflow: hidden; }
+        .w-task {
+            display: flex; align-items: center; gap: 0;
+            border-radius: 6px; margin: 2px 0; padding: 0;
+        }
+        .w-task.sel { background: var(--sep); }
+        .w-pbar { width: 3px; min-height: 48px; border-radius: 3px; margin-right: 8px; flex-shrink: 0; }
+        .w-task-info { flex: 1; padding: 7px 0; min-width: 0; }
+        .w-task-title { font-size: 11px; font-weight: 600; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 3px; }
+        .w-task-meta { font-size: 9px; color: var(--sec); }
+        .w-status { font-size: 9px; font-weight: 600; color: white; padding: 2px 6px; border-radius: 3px; flex-shrink: 0; margin-right: 4px; white-space: nowrap; }
+
+        /* Detail */
+        .w-detail { flex: 1; background: var(--bg); overflow: hidden; display: flex; flex-direction: column; }
+        .w-detail-toolbar {
+            padding: 8px 12px; border-bottom: 1px solid var(--sep);
+            font-size: 11px; font-weight: 600; color: var(--text);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .w-detail-header { padding: 10px 12px; border-bottom: 1px solid var(--sep); }
+        .w-badges { display: flex; gap: 6px; margin-bottom: 8px; }
+        .w-badge { font-size: 9px; font-weight: 600; color: white; padding: 2px 8px; border-radius: 4px; }
+        .w-meta-row { display: flex; gap: 6px; margin-bottom: 3px; }
+        .w-meta-key { font-size: 10px; color: var(--sec); font-weight: 600; min-width: 70px; }
+        .w-meta-val { font-size: 10px; color: var(--text); }
+        .w-detail-body { flex: 1; padding: 10px 12px; }
+        .w-section-hdr { font-size: 9px; font-weight: 700; color: var(--sec); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+        .w-desc { background: var(--panel); border-radius: 6px; padding: 8px 10px; }
+        .w-desc-text { font-size: 11px; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
+        .w-check { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+        .w-check span { font-size: 11px; }
+        .w-check .done { color: var(--sec); text-decoration: line-through; }
+
+        /* ── SECTION WRAPPER ── */
+        .section { padding: 80px 40px; }
+        .section-inner { max-width: 960px; margin: 0 auto; }
+        .section-label {
+            font-size: 12px; font-weight: 700; color: var(--accent);
+            letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px); font-weight: 700;
+            letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px;
+        }
+        .section-subtitle {
+            font-size: 17px; color: var(--sec); max-width: 500px; line-height: 1.6;
+        }
+        .section-alt { background: var(--panel); border-top: 1px solid var(--sep); border-bottom: 1px solid var(--sep); }
+
+        /* ── FEATURES GRID ── */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px; margin-top: 48px;
+        }
+        @media (max-width: 700px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { .features-grid { grid-template-columns: 1fr; } }
+        .feat-card {
+            background: var(--card-bg); border: 1px solid var(--sep);
+            border-radius: 14px; padding: 24px;
+        }
+        .feat-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: var(--panel); border: 1px solid var(--sep);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin-bottom: 16px;
+        }
+        .feat-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+        .feat-card p { font-size: 13px; color: var(--sec); line-height: 1.5; }
+
+        /* ── THEMES ── */
+        .themes-row { display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap; }
+        .theme-card {
+            flex: 1; min-width: 220px;
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--sep);
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+        .theme-preview { height: 140px; position: relative; }
+        .theme-dots { display: flex; gap: 5px; position: absolute; top: 12px; left: 12px; }
+        .theme-dot { width: 9px; height: 9px; border-radius: 50%; }
+        .theme-tasks { position: absolute; left: 12px; top: 36px; right: 12px; }
+        .theme-task { height: 20px; border-radius: 4px; margin-bottom: 5px; display: flex; align-items: center; gap: 4px; padding: 0 6px; }
+        .theme-tbar { width: 2px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+        .theme-tline { height: 6px; border-radius: 3px; flex: 1; }
+        .theme-tbadge { width: 28px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+        .theme-info { padding: 16px; background: var(--bg); }
+        .theme-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .theme-desc { font-size: 13px; color: var(--sec); }
+
+        /* ── HOW IT WORKS ── */
+        .steps { display: flex; gap: 0; margin-top: 52px; position: relative; }
+        .steps::before {
+            content: ''; position: absolute;
+            top: 28px; left: 28px; right: 28px;
+            height: 1px; background: var(--sep);
+        }
+        .step { flex: 1; text-align: center; padding: 0 20px; }
+        .step-num {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: var(--accent); color: white;
+            font-size: 20px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; position: relative; z-index: 1;
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+        .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .step p { font-size: 14px; color: var(--sec); line-height: 1.5; }
+
+        /* ── PRIVACY STRIP ── */
+        .privacy-strip {
+            background: var(--panel);
+            border-top: 1px solid var(--sep); border-bottom: 1px solid var(--sep);
+            padding: 48px 40px; text-align: center;
+        }
+        .privacy-items { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 28px; }
+        .privacy-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--sec); }
+        .privacy-item strong { color: var(--text); font-weight: 600; }
+
+        /* ── CTA SECTION ── */
+        .cta-section { padding: 90px 40px; text-align: center; }
+        .cta-section h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -1px; margin-bottom: 16px; }
+        .cta-section p { font-size: 17px; color: var(--sec); margin-bottom: 36px; }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--sep);
+            padding: 32px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .footer-logo { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 13px; color: var(--sec); }
+        .footer-copy { font-size: 13px; color: var(--sec); }
     </style>
 </head>
 <body>
-    <div class="header">
-        <img src="app-icon.png" alt="Mohri App Icon" class="app-icon">
-        <h1>Privacy Policy for Mohri</h1>
-        <p class="last-updated">Last updated: March 21, 2026</p>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">
+        <img src="app-icon.png" alt="Mohri">
+        Mohri
     </div>
-
-    <h2>Overview</h2>
-    <p>Mohri is a task management application for macOS that prioritizes your privacy. This privacy policy explains how we handle your data.</p>
-
-    <h2>Data Storage</h2>
-    <p>Mohri stores all your task data locally on your Mac. Your tasks, notes, comments, attachments, and all other information remain on your device and are not sent to any external servers by default.</p>
-
-    <h2>Information We Collect</h2>
-    <p>Mohri collects the following information only when you use collaboration features:</p>
-    <ul>
-        <li><strong>Email address:</strong> Entered during first launch setup. Used to identify you when sharing tasks and groups with other users. Stored in Apple's CloudKit (iCloud).</li>
-        <li><strong>Display name:</strong> Used to show who made changes, comments, and mentions. Stored locally and in CloudKit.</li>
-        <li><strong>Task data:</strong> When you share a task, its content (title, description, status, priority, due date, comments, history) is stored in CloudKit's public database so recipients can access it.</li>
-        <li><strong>Group membership:</strong> When you create or join a group, member email addresses are stored in CloudKit to enable collaboration.</li>
-    </ul>
-
-    <h2>iCloud Sync and Sharing</h2>
-    <p>Mohri uses Apple's CloudKit for task sync and collaboration. This data is:</p>
-    <ul>
-        <li>Stored securely in Apple's iCloud infrastructure</li>
-        <li>Protected by Apple's security and privacy policies</li>
-        <li>Only accessible to users you explicitly share tasks with</li>
-        <li>Encrypted during transmission</li>
-    </ul>
-    <p>Personal tasks (not shared) are stored in your private iCloud database and are not accessible to anyone else.</p>
-    <p>Shared tasks are stored in CloudKit's public database to enable cross-account collaboration. Only users with the specific task ID can access shared task data.</p>
-
-    <h2>Email Notification Service</h2>
-    <p>Mohri uses <strong>Brevo</strong> (formerly Sendinblue), a third-party email service, to send task sharing invitations and mention notifications. When an email is sent:</p>
-    <ul>
-        <li>The recipient's email address is transmitted to Brevo's servers to deliver the email</li>
-        <li>Basic task information (title, priority, status) is included in the email body</li>
-        <li>Brevo processes this data according to their <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank">privacy policy</a></li>
-        <li>We do not share any other personal data with Brevo</li>
-        <li>Emails are only sent when you explicitly share a task or mention someone</li>
-    </ul>
-
-    <h2>Data We Do NOT Collect</h2>
-    <ul>
-        <li>We do not collect analytics or usage data</li>
-        <li>We do not track your activities or behavior</li>
-        <li>We do not sell or share your data with third parties for advertising</li>
-        <li>We do not use advertising or tracking technologies</li>
-        <li>We do not access your contacts, location, or other device data</li>
-    </ul>
-
-    <h2>Shared Tasks</h2>
-    <p>When you share a task with another user:</p>
-    <ul>
-        <li>Only the specific task information is shared via CloudKit</li>
-        <li>Recipients can only see tasks you explicitly share with them</li>
-        <li>You control who has access through roles (Owner, Editor, Viewer)</li>
-        <li>You can revoke sharing access at any time</li>
-        <li>If the recipient is not a Mohri user, they receive an invitation email via Brevo</li>
-    </ul>
-
-    <h2>Groups</h2>
-    <p>When you create or join a group:</p>
-    <ul>
-        <li>Group name, emoji, and member email addresses are stored in CloudKit's public database</li>
-        <li>Group data is only visible to group members</li>
-        <li>You can leave a group at any time, which revokes your access to group-shared tasks</li>
-        <li>Group owners can delete the group, which removes all associated shared task data</li>
-    </ul>
-
-    <h2>Mentions and Notifications</h2>
-    <p>When you mention another user in a task description or comment:</p>
-    <ul>
-        <li>The mentioned user receives an email notification via Brevo</li>
-        <li>Mentions are only available for users the task is shared with</li>
-        <li>Local macOS notifications are used for due date reminders (no data leaves your device)</li>
-    </ul>
-
-    <h2>File Attachments</h2>
-    <p>Files and images attached to tasks are stored locally on your device and encoded within the task's local JSON data. Attachments in shared tasks are included in the CloudKit sync.</p>
-
-    <h2>Data Security</h2>
-    <ul>
-        <li>All CloudKit data transmission uses Apple's secure infrastructure with encryption in transit</li>
-        <li>Local data is protected by macOS security features and app sandboxing</li>
-        <li>Email transmission to Brevo uses HTTPS encryption</li>
-        <li>The app follows Apple's App Sandbox security guidelines</li>
-        <li>Task data is backed up locally before loading to prevent data loss</li>
-    </ul>
-
-    <h2>Your Rights</h2>
-    <p>You have complete control over your data:</p>
-    <ul>
-        <li>Delete any task, comment, attachment, or group at any time</li>
-        <li>Revoke sharing access for any task</li>
-        <li>Leave any group to remove access to shared tasks</li>
-        <li>Stop using sharing features and keep all data local</li>
-        <li>Delete the app and all associated local data from your device</li>
-        <li>Request deletion of your CloudKit data by contacting us</li>
-    </ul>
-
-    <h2>Data Retention</h2>
-    <p>Local task data is retained on your device until you delete it. CloudKit data for shared tasks and groups is retained until you unshare or delete them. Your user registration in the Mohri directory (email and display name) is retained to enable collaboration features and can be removed upon request.</p>
-
-    <h2>Changes to This Privacy Policy</h2>
-    <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated "Last updated" date. Continued use of Mohri after changes constitutes acceptance of the updated policy.</p>
-
-    <h2>Children's Privacy</h2>
-    <p>Mohri is not directed to children under the age of 13, and we do not knowingly collect information from children.</p>
-
-    <div class="contact">
-        <h2>Contact Us</h2>
-        <p>If you have any questions about this privacy policy, how Mohri handles your data, or to request data deletion, please contact us at:</p>
-        <p><strong>Email:</strong> wadekargajanan@gmail.com</p>
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#themes">Themes</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="privacy-policy/" >Privacy</a>
+        <a href="#download" class="btn-download">Download for Mac</a>
     </div>
+</nav>
 
-    <hr>
-    <p style="text-align: center; color: #999; font-size: 0.9em;">&copy; 2026 Mohri. All rights reserved.</p>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge"><div class="hero-badge-dot"></div>Native macOS App</div>
+    <h1>The task manager<br><span>Mac deserved.</span></h1>
+    <p>Beautiful themes, rich descriptions, smart dashboard, and iCloud sync — built exclusively for Mac from the ground up.</p>
+    <div class="hero-actions">
+        <a href="#download" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/><path d="M8 12l4 4 4-4M12 8v8"/></svg>
+            Download for Mac
+        </a>
+        <a href="#features" class="btn-secondary">See features →</a>
+    </div>
+    <p class="hero-note">Free — No account required — No subscriptions</p>
+</div>
+
+<!-- APP PREVIEW -->
+<div class="preview-wrap">
+    <div class="app-window">
+        <div class="window-chrome">
+            <div class="traffic">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+            </div>
+            <div class="window-title">Mohri — Active Tasks</div>
+        </div>
+        <div class="window-body">
+            <!-- Sidebar -->
+            <div class="w-sidebar">
+                <div class="w-section-label">Dashboard</div>
+                <div class="w-stat active"><span class="w-stat-label">All Tasks</span><span class="w-stat-num" style="color:var(--text)">17</span></div>
+                <div class="w-stat"><span class="w-stat-label">Active</span><span class="w-stat-num" style="color:#C97B3A">8</span></div>
+                <div class="w-stat"><span class="w-stat-label">Today</span><span class="w-stat-num" style="color:#3380CC">1</span></div>
+                <div class="w-stat"><span class="w-stat-label">Completed</span><span class="w-stat-num" style="color:#3A8C52">10</span></div>
+                <div class="w-stat"><span class="w-stat-label">Overdue</span><span class="w-stat-num" style="color:#D94040">1</span></div>
+                <div class="w-stat"><span class="w-stat-label">Done Today</span><span class="w-stat-num" style="color:#3A8C52">7</span></div>
+                <div class="w-divider"></div>
+                <div class="w-section-label">Filters</div>
+                <div class="w-filter-dots">
+                    <div class="w-fdot" style="background:#3380CC">3</div>
+                    <div class="w-fdot" style="background:#C97B3A">3</div>
+                    <div class="w-fdot" style="background:#3A8C52">0</div>
+                    <div class="w-fdot" style="background:#D94040">10</div>
+                    <div class="w-fdot" style="background:#7A52CC">1</div>
+                </div>
+            </div>
+            <!-- Task list -->
+            <div class="w-middle">
+                <div class="w-toolbar">
+                    <span class="w-toolbar-title">Active Tasks</span>
+                    <span class="w-new-btn">+ New</span>
+                </div>
+                <div class="w-search">🔍 Search tasks...</div>
+                <div class="w-tasks">
+                    <div class="w-task sel">
+                        <div class="w-pbar" style="background:#D94040"></div>
+                        <div class="w-task-info">
+                            <div class="w-task-title">Migrate PostgreSQL to production</div>
+                            <div class="w-task-meta">Work · Critical · Due in 2 days</div>
+                        </div>
+                        <div class="w-status" style="background:#C97B3A">In Progress</div>
+                    </div>
+                    <div class="w-task">
+                        <div class="w-pbar" style="background:#C97B3A"></div>
+                        <div class="w-task-info">
+                            <div class="w-task-title">Submit ML Assignment</div>
+                            <div class="w-task-meta">Classwork · High · Due in 5 days</div>
+                        </div>
+                        <div class="w-status" style="background:#3380CC">New</div>
+                    </div>
+                    <div class="w-task">
+                        <div class="w-pbar" style="background:#C97B3A"></div>
+                        <div class="w-task-info">
+                            <div class="w-task-title">Q2 Performance Review</div>
+                            <div class="w-task-meta">Work · High</div>
+                        </div>
+                        <div class="w-status" style="background:#C97B3A">In Progress</div>
+                    </div>
+                    <div class="w-task">
+                        <div class="w-pbar" style="background:#C4A020"></div>
+                        <div class="w-task-info">
+                            <div class="w-task-title">Book annual health checkup</div>
+                            <div class="w-task-meta">Personal · Medium · Due in 4 days</div>
+                        </div>
+                        <div class="w-status" style="background:#3380CC">New</div>
+                    </div>
+                    <div class="w-task">
+                        <div class="w-pbar" style="background:#3A8C52"></div>
+                        <div class="w-task-info">
+                            <div class="w-task-title">Define Project Scope for Mohri</div>
+                            <div class="w-task-meta">Documentation · Low</div>
+                        </div>
+                        <div class="w-status" style="background:#C97B3A">In Progress</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Detail -->
+            <div class="w-detail">
+                <div class="w-detail-toolbar">
+                    <span>Migrate PostgreSQL database to production</span>
+                    <span style="display:flex;gap:8px;color:var(--accent)">✏️ ⬆️ ⋯</span>
+                </div>
+                <div class="w-detail-header">
+                    <div class="w-badges">
+                        <span class="w-badge" style="background:#C97B3A">In Progress</span>
+                        <span class="w-badge" style="background:rgba(217,64,64,0.15);color:#D94040;border:1px solid rgba(217,64,64,0.3)">🔴 Critical</span>
+                    </div>
+                    <div class="w-meta-row"><span class="w-meta-key">📁 Category</span><span class="w-meta-val">Work</span></div>
+                    <div class="w-meta-row"><span class="w-meta-key">📅 Due Date</span><span class="w-meta-val">May 21, 2026</span></div>
+                    <div class="w-meta-row"><span class="w-meta-key">⏳ Urgency</span><span class="w-meta-val" style="color:#D94040">Overdue by 1 day</span></div>
+                </div>
+                <div class="w-detail-body">
+                    <div class="w-section-hdr">📄 Description</div>
+                    <div class="w-desc">
+                        <div class="w-desc-text">Deploy the new schema to prod before the release window.</div>
+                        <div class="w-check"><span>☑</span><span class="done">Backup production database</span></div>
+                        <div class="w-check"><span>☑</span><span class="done">Update .env.prod variables</span></div>
+                        <div class="w-check"><span>☐</span><span>Run migration on staging first</span></div>
+                        <div class="w-check"><span>☐</span><span>Schedule 2am maintenance window</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section" id="features">
+    <div class="section-inner">
+        <div class="section-label">Features</div>
+        <div class="section-title">Everything you need.<br>Nothing you don't.</div>
+        <div class="section-subtitle">Built for Mac from the ground up — native performance, native keyboard shortcuts, native everything.</div>
+        <div class="features-grid">
+            <div class="feat-card">
+                <div class="feat-icon">📊</div>
+                <h3>Smart Dashboard</h3>
+                <p>See Active, Overdue, Due Today, and Done Today at a single glance every time you open the app.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">✍️</div>
+                <h3>Rich Descriptions</h3>
+                <p>Bold text, bullet lists, interactive checklists, and tables. Your tasks deserve more than a one-liner.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🔁</div>
+                <h3>Recurring Tasks</h3>
+                <p>Set tasks to repeat daily, weekly, monthly, or yearly. Next occurrence is created automatically on completion.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">📎</div>
+                <h3>Comments & Attachments</h3>
+                <p>Add comments, attach files, images, and PDFs. All context lives inside the task where it belongs.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">☁️</div>
+                <h3>iCloud Sync</h3>
+                <p>Tasks sync automatically across all your Apple devices via your private iCloud account.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🕐</div>
+                <h3>Full History</h3>
+                <p>Every status and priority change is automatically logged with a timestamp. Always know how a task evolved.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">📅</div>
+                <h3>Calendar View</h3>
+                <p>Visualize your tasks by due date in a monthly calendar. Never lose track of what's coming up.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🔔</div>
+                <h3>Smart Notifications</h3>
+                <p>Get reminded about overdue tasks, tasks due today, and tasks due soon — at a time that suits you.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">📄</div>
+                <h3>Export to PDF</h3>
+                <p>Export any task as a beautifully formatted PDF. Choose what to include — description, comments, history.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- THEMES -->
+<div class="section section-alt" id="themes">
+    <div class="section-inner">
+        <div class="section-label">Themes</div>
+        <div class="section-title">Made to match your mood.</div>
+        <div class="section-subtitle">Switch between three carefully designed themes instantly from the sidebar. No restart needed.</div>
+        <div class="themes-row">
+            <!-- Warm -->
+            <div class="theme-card">
+                <div class="theme-preview" style="background:#FAF7F2">
+                    <div class="theme-dots">
+                        <div class="theme-dot" style="background:#FF5F57"></div>
+                        <div class="theme-dot" style="background:#FFBD2E"></div>
+                        <div class="theme-dot" style="background:#28C840"></div>
+                    </div>
+                    <div class="theme-tasks">
+                        <div class="theme-task" style="background:#F2EDE5"><div class="theme-tbar" style="background:#D94040"></div><div class="theme-tline" style="background:#1C1410;opacity:0.15"></div><div class="theme-tbadge" style="background:#C97B3A"></div></div>
+                        <div class="theme-task" style="background:#F2EDE5"><div class="theme-tbar" style="background:#C97B3A"></div><div class="theme-tline" style="background:#1C1410;opacity:0.12"></div><div class="theme-tbadge" style="background:#3380CC"></div></div>
+                        <div class="theme-task" style="background:#F2EDE5"><div class="theme-tbar" style="background:#C4A020"></div><div class="theme-tline" style="background:#1C1410;opacity:0.10"></div><div class="theme-tbadge" style="background:#3380CC"></div></div>
+                        <div class="theme-task" style="background:#F2EDE5"><div class="theme-tbar" style="background:#3A8C52"></div><div class="theme-tline" style="background:#1C1410;opacity:0.08"></div><div class="theme-tbadge" style="background:#C97B3A"></div></div>
+                    </div>
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name">🌻 Warm</div>
+                    <div class="theme-desc" style="color:#7A6E65">Amber tones, warm light. Perfect for daytime focus.</div>
+                </div>
+            </div>
+            <!-- Slate -->
+            <div class="theme-card">
+                <div class="theme-preview" style="background:#F4F6F8">
+                    <div class="theme-dots">
+                        <div class="theme-dot" style="background:#FF5F57"></div>
+                        <div class="theme-dot" style="background:#FFBD2E"></div>
+                        <div class="theme-dot" style="background:#28C840"></div>
+                    </div>
+                    <div class="theme-tasks">
+                        <div class="theme-task" style="background:#E8EDF2"><div class="theme-tbar" style="background:#D94040"></div><div class="theme-tline" style="background:#1A2530;opacity:0.15"></div><div class="theme-tbadge" style="background:#C97B3A"></div></div>
+                        <div class="theme-task" style="background:#E8EDF2"><div class="theme-tbar" style="background:#C97B3A"></div><div class="theme-tline" style="background:#1A2530;opacity:0.12"></div><div class="theme-tbadge" style="background:#3380CC"></div></div>
+                        <div class="theme-task" style="background:#E8EDF2"><div class="theme-tbar" style="background:#C4A020"></div><div class="theme-tline" style="background:#1A2530;opacity:0.10"></div><div class="theme-tbadge" style="background:#3380CC"></div></div>
+                        <div class="theme-task" style="background:#E8EDF2"><div class="theme-tbar" style="background:#3A8C52"></div><div class="theme-tline" style="background:#1A2530;opacity:0.08"></div><div class="theme-tbadge" style="background:#C97B3A"></div></div>
+                    </div>
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name">🌲 Slate</div>
+                    <div class="theme-desc" style="color:#647A8C">Cool greens and greys. Clean and professional.</div>
+                </div>
+            </div>
+            <!-- Noir -->
+            <div class="theme-card">
+                <div class="theme-preview" style="background:#1A1814">
+                    <div class="theme-dots">
+                        <div class="theme-dot" style="background:#FF5F57"></div>
+                        <div class="theme-dot" style="background:#FFBD2E"></div>
+                        <div class="theme-dot" style="background:#28C840"></div>
+                    </div>
+                    <div class="theme-tasks">
+                        <div class="theme-task" style="background:#201D18"><div class="theme-tbar" style="background:#D94040"></div><div class="theme-tline" style="background:#F0EAE0;opacity:0.2"></div><div class="theme-tbadge" style="background:#C97B3A"></div></div>
+                        <div class="theme-task" style="background:#201D18"><div class="theme-tbar" style="background:#C97B3A"></div><div class="theme-tline" style="background:#F0EAE0;opacity:0.15"></div><div class="theme-tbadge" style="background:#3380CC"></div></div>
+                        <div class="theme-task" style="background:#201D18"><div class="theme-tbar" style="background:#C4A020"></div><div class="theme-tline" style="background:#F0EAE0;opacity:0.12"></div><div class="theme-tbadge" style="background:#3380CC"></div></div>
+                        <div class="theme-task" style="background:#201D18"><div class="theme-tbar" style="background:#3A8C52"></div><div class="theme-tline" style="background:#F0EAE0;opacity:0.1"></div><div class="theme-tbadge" style="background:#C97B3A"></div></div>
+                    </div>
+                </div>
+                <div class="theme-info" style="background:#201D18;border-top:1px solid #2E2A24">
+                    <div class="theme-name" style="color:#F0EAE0">🌕 Noir</div>
+                    <div class="theme-desc" style="color:#A89880">Rich dark gold. Easy on the eyes all night long.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section" id="how-it-works">
+    <div class="section-inner">
+        <div class="section-label">How it works</div>
+        <div class="section-title">Up and running<br>in seconds.</div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Download & open</h3>
+                <p>No account, no sign-up. Just download, open, and start adding tasks immediately.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>Create your tasks</h3>
+                <p>Add tasks with priorities, due dates, categories, rich descriptions, and recurring rules.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Stay on top</h3>
+                <p>Your dashboard, smart filters, and notifications keep you focused on what matters most.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PRIVACY STRIP -->
+<div class="privacy-strip">
+    <div class="section-label">Privacy</div>
+    <div class="section-title" style="font-size:32px">Your data is yours. Always.</div>
+    <div class="privacy-items">
+        <div class="privacy-item">✅ <strong>No account required</strong></div>
+        <div class="privacy-item">✅ <strong>No subscriptions</strong></div>
+        <div class="privacy-item">✅ <strong>No tracking or analytics</strong></div>
+        <div class="privacy-item">✅ <strong>Data stays on your device</strong></div>
+        <div class="privacy-item">✅ <strong>iCloud sync — your private account only</strong></div>
+    </div>
+    <p style="margin-top:24px;font-size:14px;color:var(--sec)">
+        <a href="privacy-policy/">Read our full Privacy Policy →</a>
+    </p>
+</div>
+
+<!-- DOWNLOAD CTA -->
+<div class="cta-section" id="download">
+    <div class="section-label">Download</div>
+    <h2>Ready to get organized?</h2>
+    <p>Free to download. No account. No subscription. Just Mohri.</p>
+    <a href="#" class="btn-primary" style="font-size:17px;padding:16px 36px;display:inline-flex">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:8px"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/><path d="M8 12l4 4 4-4M12 8v8"/></svg>
+        Download on the Mac App Store
+    </a>
+    <p style="margin-top:16px;font-size:13px;color:var(--sec)">Requires macOS 13.0 or later</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">Mohri</div>
+    <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#themes">Themes</a>
+        <a href="privacy-policy/">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mohri. All rights reserved.</div>
+</footer>
+
 </body>
 </html>
