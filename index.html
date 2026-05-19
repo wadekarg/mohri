@@ -6,29 +6,46 @@
     <title>Mohri — Task Manager for Mac</title>
     <meta name="description" content="A beautiful, native task manager built exclusively for macOS. Three stunning themes, rich descriptions, iCloud sync, and a smart dashboard.">
     <style>
-        :root {
-            --bg:       #FAF7F2;
-            --panel:    #F2EDE5;
-            --accent:   #7C5C42;
+        
+        /* Warm (default) */
+        :root, html[data-theme="warm"] {
+            --bg:         #FAF7F2;
+            --panel:      #F2EDE5;
+            --accent:     #7C5C42;
+            --accent-tint:rgba(124,92,66,0.1);
+            --text:       #1C1410;
+            --sec:        #7A6E65;
+            --sep:        #EDE8E0;
+            --shadow:     rgba(124,92,66,0.12);
+            --card-bg:    #FFFFFF;
             --accent2:  #C97B3A;
-            --text:     #1C1410;
-            --sec:      #7A6E65;
-            --sep:      #EDE8E0;
-            --shadow:   rgba(124,92,66,0.12);
-            --card-bg:  #FFFFFF;
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg:       #1A1814;
-                --panel:    #201D18;
-                --accent:   #C9A842;
-                --accent2:  #C97B3A;
-                --text:     #F0EAE0;
-                --sec:      #A89880;
-                --sep:      #2E2A24;
-                --shadow:   rgba(0,0,0,0.4);
-                --card-bg:  #201D18;
-            }
+        /* Slate */
+        html[data-theme="slate"] {
+            --bg:         #F4F6F8;
+            --accent2:  #C97B3A;
+            --panel:      #E8EDF2;
+            --accent:     #4A7C59;
+            --accent-tint:rgba(74,124,89,0.1);
+            --text:       #1A2530;
+            --sec:        #647A8C;
+            --sep:        #DDE3E8;
+            --shadow:     rgba(74,124,89,0.12);
+            --card-bg:    #FFFFFF;
+            --accent2:  #C97B3A;
+        }
+        /* Noir */
+        html[data-theme="noir"] {
+            --bg:         #1A1814;
+            --panel:      #201D18;
+            --accent:     #C9A842;
+            --accent-tint:rgba(201,168,66,0.10);
+            --text:       #F0EAE0;
+            --sec:        #A89880;
+            --sep:        #2E2A24;
+            --shadow:     rgba(0,0,0,0.4);
+            --card-bg:    #201D18;
+            --accent2:  #C97B3A;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -343,6 +360,12 @@
         <a href="#how-it-works">How it works</a>
         <a href="privacy-policy/" >Privacy</a>
         <a href="#download" class="btn-download">Download for Mac</a>
+
+    <div style="display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--sep);border-radius:20px;padding:4px 8px">
+        <button onclick="setTheme('warm')"  title="Warm"  style="width:18px;height:18px;border-radius:50%;background:#7C5C42;border:2px solid transparent;cursor:pointer;padding:0;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" id="btn-warm"></button>
+        <button onclick="setTheme('slate')" title="Slate" style="width:18px;height:18px;border-radius:50%;background:#4A7C59;border:2px solid transparent;cursor:pointer;padding:0;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" id="btn-slate"></button>
+        <button onclick="setTheme('noir')"  title="Noir"  style="width:18px;height:18px;border-radius:50%;background:#C9A842;border:2px solid transparent;cursor:pointer;padding:0;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" id="btn-noir"></button>
+    </div>
     </div>
 </nav>
 
@@ -663,5 +686,21 @@
     <div class="footer-copy">&copy; 2026 Mohri. All rights reserved.</div>
 </footer>
 
+
+<script>
+    const THEMES = { warm: '#7C5C42', slate: '#4A7C59', noir: '#C9A842' };
+    function setTheme(t) {
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('mohri-theme', t);
+        Object.keys(THEMES).forEach(k => {
+            const btn = document.getElementById('btn-' + k);
+            if (btn) btn.style.border = k === t ? '2px solid white' : '2px solid transparent';
+        });
+    }
+    (function() {
+        const saved = localStorage.getItem('mohri-theme') || 'warm';
+        setTheme(saved);
+    })();
+</script>
 </body>
 </html>
